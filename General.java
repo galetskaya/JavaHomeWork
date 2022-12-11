@@ -59,17 +59,17 @@ public class General {
 
     //Method to search nd compare user parameters with the existing list
 
-    public static void searchVar(ArrayList<Notebook> listObj, Map<String, String> parametrsForSeach) {
+    public static void searchVar(ArrayList<Notebook> listObj, Map<String, String> userChoice) {
         ArrayList<Notebook> result = new ArrayList<>();
-        if (parametrsForSeach.isEmpty()) {
+        if (userChoice.isEmpty()) {
             System.out.println("You have to insert at least 1 parameter!\n");
-            searchVar(listObj, userChoice());
+            searchVar(listObj, userChoice);
         } else {
-            var fields = parametrsForSeach.keySet();
+            var fields = userChoice.keySet();
             for (Object field : fields) {
                 for(Notebook obj: listObj) {
                     if (obj.parametrsMap().get(field.toString()).toString()
-                            .equals(parametrsForSeach.get(field.toString()))) {
+                            .equals(userChoice.get(field.toString()))) {
                         if(!result.contains(obj)) {
                             result.add(obj);
                         }
@@ -80,7 +80,7 @@ public class General {
                 ArrayList<Notebook> temp = new ArrayList<>(result);
                 for (Notebook obj : temp) {
                     if (!obj.parametrsMap().get(field.toString()).toString()
-                            .equals(parametrsForSeach.get(field.toString()))) {
+                            .equals(userChoice.get(field.toString()))) {
                         result.remove(obj);
                     }
                 }
